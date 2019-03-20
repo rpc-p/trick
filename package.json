@@ -1,0 +1,30 @@
+{
+  "name": "trick",
+  "version": "1.0.1",
+  "description": "trick",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "rt": "./bin/rt.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpc-p/trick.git"
+  },
+  "keywords": [
+    "react",
+    "react-pack-cli"
+  ],
+  "author": "moonlit",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rpc-p/trick/issues"
+  },
+  "homepage": "https://github.com/rpc-p/trick#readme",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "commander": "^2.19.0"
+  }
+}
