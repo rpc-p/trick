@@ -1,0 +1,27 @@
+{
+  "compress": {
+      "majorversion": "1.0.0",
+      "minorversion": "1",
+      "cmd": "dist"
+  },
+  "env": {
+      "dev": {
+          "host": "",
+          "port": "",
+          "path": ""
+      },
+      "test": {
+          "host": "",
+          "port": "",
+          "path": ""
+      },
+      "prod": {
+          "host": "",
+          "port": "",
+          "path": ""
+      },
+      "basicPath": "",
+      "mockPath": "",
+      "outputPath": ""
+  }
+}

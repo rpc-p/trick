@@ -1,5 +1,5 @@
 {
-  "name": "trick",
+  "name": "@rpc-p/trick",
   "version": "0.0.1",
   "description": "trick",
   "main": "index.js",
@@ -26,6 +26,8 @@
   "homepage": "https://github.com/rpc-p/trick#readme",
   "dependencies": {
     "chalk": "^2.4.2",
-    "commander": "^2.19.0"
+    "commander": "^2.19.0",
+    "inquirer": "^6.2.2",
+    "lodash": "^4.17.11"
   }
 }

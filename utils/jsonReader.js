@@ -8,10 +8,11 @@ const fs = require('fs');
 function readJson(url) {
   return new Promise((resolve, reject) => {
     if (!url) reject('no file');
+    if (!fs.existsSync(url)) resolve({});
 
     fs.readFile(url, (err, data) => {
       if (err) reject(err);
-    
+
       resolve(JSON.parse(data));
     })
   })
