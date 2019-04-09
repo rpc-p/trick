@@ -19,16 +19,16 @@ function readJson(url) {
 }
 
 /**
- * write
+ * append
  *
  * @param {string} url the json path to read
  * @param {Object} replace 
  */
-function writeJson(url, replace = {}) {
+function appendJson(url, replace = {}) {
   return new Promise((resolve, reject) => {
     readJson(url)
       .then(res => {
-        const result = Object.assign({}, res, replace);
+        const result = res ? Object.assign({}, res, replace) : replace;
 
         fs.writeFile(url, JSON.stringify(result, null, 4), (err) => {
           if (err) reject(err);
@@ -38,4 +38,19 @@ function writeJson(url, replace = {}) {
   })
 }
 
-module.exports = { readJson, writeJson };
+/**
+ * write
+ *
+ * @param {string} url the json path to read
+ * @param {Object} content 
+ */
+function writeJson(url, content) {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(url, JSON.stringify(content, null, 4), (err) => {
+      if (err) reject(err);
+      resolve();
+    });
+  })
+}
+
+module.exports = { readJson, appendJson, writeJson };

@@ -20,8 +20,8 @@
           "port": "",
           "path": ""
       },
-      "basicPath": "",
-      "mockPath": "",
-      "outputPath": ""
+      "mockPath": "./trick/env.mock.js",
+			"basicPath": "./trick/env.base.js",
+			"outputPath": "./config.js"
   }
 }
