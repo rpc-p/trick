@@ -4,19 +4,19 @@ You can execute `rt -h` to Get simple help
 
 ## Command
 
-- init
+### Init
 
 `rt init`
 
 Generate default configuration file
 
-- Packaged
+### Packaged
 
-`rt cs [version]`
+**`rt cs [version]`**
 
 `version` is a designated version
 
-*ex*
+*e.g*
 
 We assume the `version` in `package.json` is **1.0.1**
 
@@ -44,7 +44,7 @@ The result is:
 
 `v1.0.1.2`
 
-- Switch environment
+### Switch environment
 
 `rt env`
 
