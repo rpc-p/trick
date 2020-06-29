@@ -1,0 +1,176 @@
+var BASIC_CONFIG = {
+  /**
+   * 服务器地址相关
+   *
+   */
+  serverAddress: {
+    common: 'http://<%= commonHost%>:1080',            // 通用服务器地址
+    news: 'http://<%= commonHost%>:9898',              // 资讯通用
+    IPO: 'http://<%= commonHost%>:1080',              // IPO资讯地址
+    class: 'http://<%= commonHost%>:51100/',          // 霸财课堂接口
+  },
+  
+
+  /**
+   * 资讯详情地址(服务器地址直接取当前页面的，不用写)
+   *
+   */
+  newsDetailPath: '/dist/news-detail.html',
+
+  /**
+   * 联系客服
+   *
+   */
+  contact: {
+    whatsApp: '6622 3227',                // whatsApp
+    // consumerHotline: '',               // 客服电话
+    workHours: '09:00-20:00',             // 工作时间
+  },
+
+  /**
+   * 注册
+   *
+   */
+  register: {
+    privacyPolicyPath: {
+      'zh-Hans': 'http://183.57.47.83:8058/dist/source/Privacy-Statement-and-Terms-of-Service.html',
+      'zh-Hant': 'http://183.57.47.83:8058/dist/source/Privacy-Statement-and-Terms-of-Service.html',
+    }
+  },
+
+  /**
+   * 用户手册
+   *
+   */
+  handbook: {
+    // downloadPath: '', // 下载地址
+  },
+
+  /**
+   * 快讯
+   *
+   */
+  newsletter: {
+    infoType: 3,                              // 消息类型
+    pageSize: 15,                             // 默认一页条数
+    pullPeriod: 60000,                        // 拉取时间周期
+    briefLimit: 300,                          // 显示更多按钮的临界线 字符串长度
+  },
+
+  /**
+   * 外盘资讯
+   *
+   */
+  newsBuyMarket: {
+    categoryId: 20,                           // 类型id
+    pageSize: 30,                             // 默认一页条数
+    pullPeriod: 60000,                        // 拉取时间周期
+  },
+
+  /**
+   * 个股资讯
+   *
+   */
+  newsStock: {
+    infoType: 2,                              // 消息类型
+    pageSize: 15,                             // 默认一页条数
+    pullPeriod: 60000,                        // 拉取时间周期
+  },
+
+  /**
+   * 专家视点
+   *
+   */
+  newsPundits: {
+    infoType: 1100,                           // 消息类型
+    pageSize: 30,                             // 默认一页条数
+  },
+
+  /**
+   * 投资先机
+   *
+   */
+  investmentOpportunities: {
+    infoType: 101,                           // 消息类型
+    pageSize: 30,                            // 默认一页条数
+  },
+
+  /**
+   * 个人中心
+   *
+   */
+  personalCenter: {
+    // 我的消息
+    notification: {
+      pageSize: 30, // 默认一页条数
+    },
+  },
+
+  /**
+   * IPO
+   *
+   */
+  IPO: {
+    news: {
+      categoryId: 22,                        // 类型id
+    },
+  },
+  
+  /**
+   * 霸财课堂
+   *
+   */
+  class: {
+    size: 6, // 请求个数
+    classRoomAddress: 'http://newbc01.stockonline.com:8058/zhibo', // 霸财课堂直播间跳转地址
+  },
+
+  /**
+   * 财务选股
+   *
+   */
+  financialStockPicking: {
+    tutorialLink: 'https://www.youtube.com/watch?v=spKMdbgy97o', // 教学视频地址
+  }
+};
+
+var ORGANIZATION_CONFIG = {
+  '0001': {
+    baseInfo: {
+      appName: {
+        'zh-Hans': '霸财智赢',
+        'zh-Hant': '霸財智贏',
+      },
+      companyName: {
+        'zh-Hans': '霸财智赢信息网络有限公司',
+        'zh-Hant': '霸財智贏信息網絡有限公司',
+      },
+    },
+    contact: {
+      whatsApp: '6622 3227',
+      consumerHotline: '010-58298033',
+    },
+    handbook: {
+      downloadPath: 'http://10.10.11.129:8058/dist/static/power-trader.docx',
+    },
+  },
+
+  '0002': {
+    baseInfo: {
+      appName: {
+        'zh-Hans': '宏大证券',
+        'zh-Hant': '宏大證券',
+      },
+      companyName: {
+        'zh-Hans': '宏大证券',
+        'zh-Hant': '宏大證券',
+      },
+    },
+    contact: {
+      consumerHotline: '852-35882808',
+    },
+    handbook: {
+      downloadPath: 'http://10.10.11.129:8058/dist/static/power-trader.docx',
+    },
+  }
+};
