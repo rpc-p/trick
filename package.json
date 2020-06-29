@@ -18,7 +18,7 @@
     "react",
     "react-pack-cli"
   ],
-  "author": "moonlit",
+  "author": "Roc Sun",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/rpc-p/trick/issues"
