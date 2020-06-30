@@ -6,54 +6,82 @@ You can execute `rt -h` to Get simple help
 
 ### Init
 
-`rt init`
+Generate default configuration file。
 
-Generate default configuration file
+`rt init [outputPath]`
 
-### Packaged
+- outputPath
 
-**`rt cs [version]`**
+default: `./dev/trick/`
 
-`version` is a designated version
+### Build
 
-*e.g*
+`rt -c './dev/trick/trick.js' build [version]`
 
-We assume the `version` in `package.json` is **1.0.1**
+- version
 
-and the `minorversion` in `trick.json` is **1**
+`version` is a designated version。
+
+*e.g.*
+
+We assume the `version` in `trick.js` is **1.0.1.2**
+
+```js
+version: '0.0.0.1',
+```
 
 excute:
 
 ```bash
-rt cs 3
+rt build 5 # v1.0.0.5
+
+rt build # v1.0.0.3
+
+rt build 1.1 # v1.0.1.1
+
+rt build 1.1.1 # v1.1.1.1
+
+rt build 2.1.1.1 # v2.1.1.1
 ```
 
-The result is:
+### env
 
-`v1.0.1.3`
+Switch environment
 
-if `version` is empty
+`rt -c './dev/trick/trick.js' build [environment]`
+
+`trick.js env` is:
+
+```js
+{
+  env: {
+      environmentVariables: {
+        dev: {
+          commonHost: 'www.dev.com',
+        },
+        test: {
+          commonHost: 'www.test.com',
+        },
+        prod: {
+          commonHost: 'www.prod.com',
+        },
+    },
+  }
+}
+```
+
+excute:
 
 ```bash
-rt cs
+$ rt env
+
+dev ○
+test
+prod
 ```
 
-That Will add 1 on the original basis that `minorversion` in the `trick.json`.
+If we do not specify an environment, then a list will be given for you to choose.
 
-The result is:
+Otherwise, the designated environment will be directly selected。
 
-`v1.0.1.2`
-
-### Switch environment
-
-`rt env`
-
-When you execute this command, you can choose a environment that `env` `test` and `prod`.
-
-Execution results according to your configuration in the `trick.json`.
-
-- Switch major version
-
-`rt v [version]`
-
-this is a duplicate of `npm version`
+`rt env dev`
