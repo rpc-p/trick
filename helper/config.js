@@ -1,12 +1,16 @@
 const path = require('path');
 const fse = require('fs-extra');
 const inquirer = require('inquirer');
+const { packageJsonPath } = require('../constant/path');
+const packageJsonRaw = require(packageJsonPath);
 
-const { log, error, success } = require('../utils/logger');
+const { success, info, custom } = require('../utils/logger');
 
 module.exports = new class Config {
-  content = {};
-  environmentVariablesList = {};
+  configPath;
+  rawConfig = {};
+  envConfig = {};
+  buildConfig = {};
 
   init(configPath) {
     return new Promise((resolve, reject) => {
@@ -19,22 +23,19 @@ module.exports = new class Config {
         reject(new Error(message));
       }
 
-      this.content = require(relativePath)();
+      this.configPath = relativePath;
+      this.rawConfig = require(relativePath)();
+      this.envConfig = this.rawConfig.env || {};
+      this.buildConfig = this.rawConfig.build || {};
 
-      success('Read config successfully')
+      success('Read config successfully');
       resolve();
     })
   }
 
-  getEnvironmentList() {
-    const { environmentVariables = {} } = this.content;
-
-    return ;
-  }
-
   getEnvironmentVariables(environment) {
     return new Promise(async (resolve, reject) => {
-      const { environmentVariables = {}, globalVariables = {} } = this.content;
+      const { environmentVariables = {}, globalVariables = {} } = this.envConfig;
       const environmentList = Object.keys(environmentVariables);
 
       let currEnvironment = environment;
@@ -56,6 +57,55 @@ module.exports = new class Config {
       }
 
       resolve({ ...globalVariables, ...environmentVariables[currEnvironment] });
+    });
+  }
+
+  upgradeVersion(specifiedVersion) {
+    const { seperator, version, packageJson: packageJsonConfig } = this.buildConfig;
+    const versionArray = version.split(seperator);
+    let nextVersionArray = [...versionArray];
+    let nextVersion;
+    const nextVersionArrayLastIndex = nextVersionArray.length - 1;
+
+    if (specifiedVersion) {
+      const specifiedVersionArray = specifiedVersion.split(seperator);
+
+      specifiedVersionArray
+        .reverse()
+        .forEach((item, index) => {
+          nextVersionArray.splice(-index - 1, 1, item);
+        })
+    } else {
+      nextVersionArray.splice(nextVersionArrayLastIndex, 1, +nextVersionArray[nextVersionArrayLastIndex] + 1);
+
+      nextVersionArray = nextVersionArray;
+    }
+
+    nextVersion = nextVersionArray.join(seperator);
+
+    info(`Version upgrade ${custom('magenta')(version)} => ${custom('magenta')(nextVersion)}`);
+
+    let embedValue = {};
+
+    if (packageJsonConfig) {
+      for (const key in packageJsonConfig) {
+        embedValue[key] = packageJsonConfig[key](nextVersionArray);
+      }
+
+      fse.writeJson(packageJsonPath, {...packageJsonRaw, ...embedValue}, { spaces: 2 })
+        .then(() => {
+          success('Update package.json successfully!');
+        })
+    }
+
+    fse.readFile(this.configPath, (err, data) => {
+      if (err) throw err;
+
+      fse.writeFile(this.configPath, data.toString().replace(version, nextVersion), (err, data) => {
+        if (err) throw err;
+
+        success(`Update ${this.configPath} successfully!`);
+      })
     });
   }
 }();

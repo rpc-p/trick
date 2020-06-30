@@ -1,11 +1,10 @@
 {
   "name": "@rpc-p/trick",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "trick",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "compress": "node ./compress.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
     "rt": "./bin/rt.js"
@@ -27,9 +26,9 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "commander": "^5.1.0",
+    "cross-spawn": "^7.0.3",
     "ejs": "^3.1.3",
     "fs-extra": "^9.0.1",
-    "inquirer": "^7.2.0",
-    "lodash": "^4.17.15"
+    "inquirer": "^7.2.0"
   }
 }

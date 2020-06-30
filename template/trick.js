@@ -1,38 +1,36 @@
 const path = require('path');
 
 module.exports = () => ({
-  version: {
-    major: 4,
-    minor: 0,
-    patch: 20,
-    test: 2,
-  },
-  packageManager: 'yarn',
-  compress: {
-    command: 'dist',
-  },
-  globalVariables: {
-
-  },
-  environmentVariables: {
-    dev: {
-      commonHost: '10.10.11.71',
-    },
-    test: {
-      commonHost: '183.57.47.83',
-    },
-    prod: {
-      commonHost: 'newbc01.stockonline.com',
+  build: {
+    packageManager: 'yarn',
+    argv: ['dist'],
+    version: '0.0.0.1',
+    seperator: '.',
+    packageJson: {
+      version: (versionArray) => `${versionArray[0]}.${versionArray[1]}.${versionArray[2]}`,
+      testversion: (versionArray) => versionArray[3],
     },
   },
-  config: {
-    entry: {
-      devConfig: path.resolve(__dirname, './dev-server.ejs'),
-      config: path.resolve(__dirname, './config-base.ejs'),
+  env: {
+    globalVariables: {},
+    environmentVariables: {
+      dev: {
+        commonHost: 'www.dev.com',
+      },
+      test: {
+        commonHost: 'www.test.com',
+      },
+      prod: {
+        commonHost: 'www.prod.com',
+      },
     },
-    output: {
-      devConfig: path.resolve(__dirname, '../mock/dev-server.js'),
-      config: path.resolve(__dirname, '../../config.js'),
+    config: {
+      entry: {
+        config: path.resolve(__dirname, './config.ejs'),
+      },
+      output: {
+        config: path.resolve(__dirname, '../../config.js'),
+      },
     },
-  },
+  }
 });

@@ -1,3 +1,3 @@
 module.exports = {
-  DEFAULT_CONFIG_PATH: './trick.js',
+  DEFAULT_TRICK_FOLDER_PATH: './dev/trick',
 };
